@@ -1,4 +1,6 @@
 #A solution for the "circuit" challenge by Zine-eddine fodil
+#P.S: I used  "windows-1252" encoding since most of the other
+#encoding I tried gave errors and to use bytearrays
 
 def getKthBit(given_num,k):
 	return (given_num & (1 << k)) >>k 
@@ -25,7 +27,6 @@ def main():
 	secret_string=file.read()
 	secret_string_list=bytearray(secret_string,"windows-1252")
 	file.close()	
-
 	#now doing some brutforce to the KEY ^_^ :p 
 	#we know that if XOR(P,key)=C then XOR(C,key)=P
 	#in this case it is not really XOR only, but the function seems to be reversible 
@@ -37,11 +38,8 @@ def main():
 
 		plain_string=plain_string_list.decode("windows-1252")
 		if "shellmates{" in plain_string :
-			print("KEY :{0} , FLAG :{1}".format(key,plain_string))
+			print("KEY :{0} , PLAIN_TEXT :{1}".format(key,plain_string))
 			break
 	
-
-	
-
 if __name__ == '__main__':
 	main()
